@@ -2,10 +2,10 @@ name: git-push
 version: 0.1
 description: Push to a remote repository (by default on github.com)
 keywords:
-  - git
-  - push
-  - github
-  - ssh
+ git
+ push
+ github
+ ssh
 properties:
   host:
     type: string
