@@ -4,7 +4,7 @@ Commits and pushes a directory to a remote repository
 
 # Options
 
-- `repo` Full repo address, for example `https://git@github.com:{username}/{repo}`
+- `repo` Full repo address, for example `https://git@github.com:{username}/{repo}.git`
 - `branch` Remote branch to commit to
 - `basedir` Local directory to commit and push
 - `clean_removed_files` (optional) Whether to remove files in the remote repo which are not in `basedir`
@@ -15,7 +15,7 @@ Commits and pushes a directory to a remote repository
 deploy:
   steps:
   - git-push:
-      repo: https://git@github.com:{username}/{repo}
+      repo: https://git@github.com:{username}/{repo}.git
       branch: gh-pages
       basedir: public
 ```
