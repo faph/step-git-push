@@ -35,15 +35,18 @@ function error() {
 function fail() {
     _message "failed: ${1}" $ERROR_COLOR
     echo "${1}" > "$WERCKER_REPORT_MESSAGE_FILE"
-    exit 1
+    #exit 1
 }
-
 
 function setMessage() {
   echo "${1}" > "$WERCKER_REPORT_MESSAGE_FILE"
 }
 
-
+function cloneRepo {
+  debug "Cloning repo from ${1} into: ${2}"
+  git clone $1 $2 --quiet 2>&1
+}
 
 # Make sure we fail on all errors
 set -e
+set -o pipefail

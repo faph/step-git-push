@@ -1,24 +1,25 @@
 name: git-push
 version: 0.1
-description: Push to a remote repository (by default on github.com)
+description: Commit and push a local folder to a remote git repository
 keywords:
 - git
+- commit
 - push
 - github
 - ssh
 properties:
-  host:
-    type: string
-    required: false
-    default: github.com
   repo:
     type: string
     required: true
+  branch:
+    type: string
+    required: false
+    default: master
   basedir:
     type: string
     required: false
-    default: ''
+    default: './'
   clean_removed_files:
     type: string
     required: false
-    default: true
+    default: false
