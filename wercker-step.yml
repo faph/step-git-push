@@ -1,26 +1,24 @@
-name: slack-notifier
-version: 1.2.1
-description: Posts wercker build/deploy status to a Slack channel.
+name: git-push
+version: 0.1
+description: Push to a remote repository (by default on github.com)
 keywords:
-  - notification
-  - webhook
-  - slack
+  - git
+  - push
+  - github
+  - ssh
 properties:
-  url:
+  host:
+    type: string
+    required: false
+    default: github.com
+  repo:
     type: string
     required: true
-  channel:
+  basedir:
     type: string
     required: false
-  username:
+    default: ''
+  clean_removed_files:
     type: string
     required: false
-  notify_on:
-    type: string
-    required: false
-  icon_url:
-    type: string
-    required: false
-  branch:
-    type: string
-    required: false
+    default: true
