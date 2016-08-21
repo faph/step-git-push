@@ -2,7 +2,7 @@
 WARN_COLOR=$(tput setaf 3 ; tput bold)
 SUCCESS_COLOR=$(tput setaf 2 ; tput bold)
 ERROR_COLOR=$(tput setaf 1 ; tput bold)
-INFO_COLOR=$(tput setaf 7 ; tput bold )
+INFO_COLOR=$(tput setaf 8 ; tput bold )
 DEBUG_COLOR=$(tput setaf 8 ; tput bold)
 RESET_COLOR=$(tput sgr0)
 
@@ -42,9 +42,24 @@ function setMessage() {
   echo "${1}" > "$WERCKER_REPORT_MESSAGE_FILE"
 }
 
-function cloneRepo {
-  debug "Cloning repo from ${1} into: ${2}"
-  git clone $1 $2 --quiet 2>&1
+function cloneRepo() {
+  info "Cloning repo from ${1}, branch ${2} into ${3}."
+  git clone --quiet --branch="${2}" $1 $3
+}
+
+function copyFiles() {
+  info "Copying all files in ${1} into ${2}."
+  cp --recursive --force "${1}"* "${2}"
+}
+
+function commitFiles() {
+  local message="[ci skip] Commit from Wercker bot."
+  local author="Wercker Bot <pleasemailus@wercker.com>"
+  info "Committing all files in ${1}."
+  pushd "${1}" > /dev/null
+  git add --verbose .
+  git commit --message="${message}" --author="${author}"
+  popd > /dev/null
 }
 
 # Make sure we fail on all errors

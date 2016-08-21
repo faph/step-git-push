@@ -10,8 +10,9 @@ if [ -z "$WERCKER_GIT_PUSH_BRANCH" ]; then
 fi
 
 if [ -z "$WERCKER_GIT_PUSH_BASEDIR" ]; then
-  export WERCKER_GIT_PUSH_BASEDIR="./"
+  export WERCKER_GIT_PUSH_BASEDIR="."
 fi
+basePath=$(pwd)/$WERCKER_GIT_PUSH_BASEDIR/
 
 if [ -z "$WERCKER_GIT_PUSH_CLEAN_REMOVED_FILES" ]; then
   export WERCKER_GIT_PUSH_CLEAN_REMOVED_FILES="false"
@@ -20,11 +21,10 @@ else
   WERCKER_GIT_PUSH_CLEAN_REMOVED_FILES="${WERCKER_GIT_PUSH_CLEAN_REMOVED_FILES,,}"
 fi
 
-debug "Parameters configured OK."
-
 cloneInto="/tmp/clonedrepo"
 # Remove previously cloned repo, if exist
 rm -rf $cloneInto
 
-debug $WERCKER_GIT_PUSH_REPO
-cloneRepo $WERCKER_GIT_PUSH_REPO $cloneInto
+cloneRepo "$WERCKER_GIT_PUSH_REPO" "$WERCKER_GIT_PUSH_BRANCH" "$cloneInto"
+copyFiles "$basePath" "$cloneInto"
+commitFiles "$cloneInto"
