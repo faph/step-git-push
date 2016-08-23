@@ -60,7 +60,7 @@ commitFiles() {
   git add --verbose .
   git commit --message="${message}" --author="${author}"
   local exitcode="$?"
-  info "Commit completed with exit code ${exitcode}."
+  debug "Commit completed with exit code ${exitcode}."
   popd > /dev/null
   return $exitcode
 }

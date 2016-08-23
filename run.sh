@@ -21,12 +21,15 @@ else
   WERCKER_GIT_PUSH_CLEAN_REMOVED_FILES="${WERCKER_GIT_PUSH_CLEAN_REMOVED_FILES,,}"
 fi
 
-cloneInto="/tmp/clonedrepo"
+repoDir="/tmp/git/repo"
 # Remove previously cloned repo, if exist
-rm -rf $cloneInto
+rm -rf $repoDir
 
-cloneRepo "$WERCKER_GIT_PUSH_REPO" "$WERCKER_GIT_PUSH_BRANCH" "$cloneInto"
-copyFiles "$basePath" "$cloneInto"
-commitFiles "$cloneInto"
-echo "back $?"
-pushFiles "$cloneInto" "$WERCKER_GIT_PUSH_REPO" "$WERCKER_GIT_PUSH_BRANCH"
+cloneRepo "$WERCKER_GIT_PUSH_REPO" "$WERCKER_GIT_PUSH_BRANCH" "$repoDir"
+copyFiles "$basePath" "$repoDir"
+
+if commitFiles "$repoDir"; then
+  pushFiles "$repoDir" "$WERCKER_GIT_PUSH_REPO" "$WERCKER_GIT_PUSH_BRANCH"
+else
+  info "Skip pushing files."
+fi
