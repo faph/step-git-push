@@ -28,3 +28,5 @@ rm -rf $cloneInto
 cloneRepo "$WERCKER_GIT_PUSH_REPO" "$WERCKER_GIT_PUSH_BRANCH" "$cloneInto"
 copyFiles "$basePath" "$cloneInto"
 commitFiles "$cloneInto"
+echo "back $?"
+pushFiles "$cloneInto" "$WERCKER_GIT_PUSH_REPO" "$WERCKER_GIT_PUSH_BRANCH"
