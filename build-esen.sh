@@ -51,7 +51,7 @@ copyFiles() {
   info "Copying all files in ${1} into ${2}."
   if $3 ; then
     info "Cleaning removed files in ${2} first."
-    rm --recursive "${2}"/*
+    rm --recursive --force "${2}"/*
   fi
   cp --recursive "${1}"/* "${2}"
 }
