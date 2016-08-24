@@ -50,10 +50,10 @@ cloneRepo() {
 copyFiles() {
   info "Copying all files in ${1} into ${2}."
   if $3 ; then
-    info "Cleaning removed files first."
-    # TODO
+    info "Cleaning removed files in ${2} first."
+    rm --recursive "${2}"/*
   fi
-  cp --recursive --force "${1}"/* "${2}"
+  cp --recursive "${1}"/* "${2}"
 }
 
 commitFiles() {
@@ -61,7 +61,7 @@ commitFiles() {
   local author="Wercker Bot <pleasemailus@wercker.com>"
   info "Committing all files in ${1}."
   pushd "${1}" > /dev/null
-  git add --verbose .
+  git add --all --verbose .
   git commit --message="${message}" --author="${author}"
   local exitcode="$?"
   debug "Commit completed with exit code ${exitcode}."
