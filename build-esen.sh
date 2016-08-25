@@ -58,7 +58,7 @@ copyFiles() {
 
 commitFiles() {
   local message="[ci skip] Commit from Wercker bot."
-  local author="Wercker Bot <pleasemailus@wercker.com>"
+  local author="Wercker Bot <wercker@users.noreply.github.com >"
   info "Committing all files in ${1}."
   pushd "${1}" > /dev/null
   git add --all --verbose .
