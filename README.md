@@ -1,3 +1,5 @@
+[![wercker status](https://app.wercker.com/status/eebff18522810f61a9467b0cd03e095b/m "wercker status")](https://app.wercker.com/project/bykey/eebff18522810f61a9467b0cd03e095b)
+
 # step-git-push
 
 Commit and push a local folder to a remote git repository.
