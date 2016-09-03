@@ -1,5 +1,5 @@
 name: git-push
-version: 0.1
+version: 1.0
 description: Commit and push a local folder to a remote git repository
 keywords:
 - git
@@ -19,7 +19,7 @@ properties:
     type: string
     required: false
     default: './'
-  clean_removed_files:
+  ignore_removed_files:
     type: string
     required: false
     default: false
