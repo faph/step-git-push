@@ -42,9 +42,37 @@ setMessage() {
   echo "${1}" > "$WERCKER_REPORT_MESSAGE_FILE"
 }
 
+cloneOrInitRepo() {
+  if repoHasBranch "${1}" "${2}"; then
+    cloneRepo "${1}" "${2}" "${3}"
+  else
+    initBranch "${3}" "${2}"
+  fi
+}
+
 cloneRepo() {
   info "Cloning repo from ${1}, branch ${2} into ${3}."
   git clone --quiet --branch="${2}" $1 $3
+}
+
+initBranch() {
+  info "Creating new branch ${2} in local directory ${1}."
+  mkdir --parents "${1}"
+  pushd "${1}" > /dev/null
+  git init --quiet
+  git checkout --quiet -b "${2}"
+  popd > /dev/null
+}
+
+repoHasBranch() {
+  debug "Testing if repo ${1} has branch ${2}."
+  if git ls-remote --quiet --heads --exit-code "${1}" "${2}" > /dev/null ; then
+    debug "Branch ${2} exists."
+    return 0
+  else
+    debug "Branch ${2} does not exist"
+    return 1
+  fi
 }
 
 copyFiles() {
@@ -58,7 +86,7 @@ copyFiles() {
 
 commitFiles() {
   local message="[ci skip] Commit from Wercker bot."
-  local author="Wercker Bot <wercker@users.noreply.github.com >"
+  local author="Wercker Bot <wercker@users.noreply.github.com>"
   info "Committing all files in ${1}."
   pushd "${1}" > /dev/null
   git add --all --verbose .

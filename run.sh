@@ -24,7 +24,7 @@ info "cleanRemoved: ${cleanRemoved}"
 repoDir=$(tempDirName)
 info "repoDir: ${repoDir}"
 
-cloneRepo "$repo" "$branch" "$repoDir" \
+cloneOrInitRepo "$repo" "$branch" "$repoDir" \
   && copyFiles "$basePath" "$repoDir" "$cleanRemoved" \
   && ( 
     if commitFiles "$repoDir"; then
