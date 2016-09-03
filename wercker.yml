@@ -6,4 +6,4 @@ build:
 
         - script:
             name: prepare output
-            code: rm -rf $WERCKER_ROOT/.git
+            code: rm -rf $WERCKER_ROOT/.git $WERCKER_ROOT/.gitattributes
