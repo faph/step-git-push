@@ -16,16 +16,16 @@ info "branch: ${branch}"
 basePath=$(pwd)/${WERCKER_GIT_PUSH_BASEDIR-.}/
 info "basePath: ${basePath}"
 
-# Whether to remove files from repo, not in basePath
-cleanRemoved=${WERCKER_GIT_PUSH_CLEAN_REMOVED_FILES-false} 
-info "cleanRemoved: ${cleanRemoved}"
+# Whether to ignore remove files from repo not in basePath, default: false
+ignoreRemoved=${WERCKER_GIT_PUSH_IGNORE_REMOVED_FILES-false} 
+info "ignoreRemoved: ${ignoreRemoved}"
 
 # Clone repo into this directory
 repoDir=$(tempDirName)
 info "repoDir: ${repoDir}"
 
 cloneOrInitRepo "$repo" "$branch" "$repoDir" \
-  && copyFiles "$basePath" "$repoDir" "$cleanRemoved" \
+  && copyFiles "$basePath" "$repoDir" "$ignoreRemoved" \
   && ( 
     if commitFiles "$repoDir"; then
       pushFiles "$repoDir" "$repo" "$branch"

@@ -7,7 +7,7 @@ Commit and push a local folder to a remote git repository.
 - `repo` Full repo address, for example `ssh://git@github.com:{username}/{repo}.git`
 - `branch` (optional) Remote branch to commit to. Default: `master`.
 - `basedir` (optional) Local directory to commit and push. Default: `./`.
-- `clean_removed_files` (optional) Whether to remove files in the remote repo which are not in `basedir`. Default `false`.
+- `ignore_removed_files` (optional) Whether to ignore remove files in the remote repo which are not in `basedir`. Default `false`.
 
 ## Example
 
@@ -18,7 +18,7 @@ deploy:
       repo: ssh://git@github.com:{username}/{repo}.git
       branch: gh-pages
       basedir: public
-      clean_removed_files: true
+      ignore_removed_files: false
 ```
 
 ## Terms & Conditions
