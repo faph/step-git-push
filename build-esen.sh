@@ -89,7 +89,7 @@ commitFiles() {
   local author="Wercker Bot <wercker@users.noreply.github.com>"
   info "Committing all files in ${1}."
   pushd "${1}" > /dev/null
-  git add --all --verbose .
+  git add --all .
   git commit --message="${message}" --author="${author}"
   local exitcode="$?"
   debug "Commit completed with exit code ${exitcode}."

@@ -1,5 +1,5 @@
 name: git-push
-version: "1.0.2"
+version: "1.0.3"
 description: Commit and push a local folder to a remote git repository
 keywords:
 - git
