@@ -20,7 +20,6 @@ deploy:
       repo: ssh://git@github.com:{username}/{repo}.git
       branch: gh-pages
       basedir: public
-      ignore_removed_files: false
 ```
 
 ## Terms & Conditions
