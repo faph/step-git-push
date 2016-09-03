@@ -1,5 +1,5 @@
 #!/bin/bash
-#source build-esen.sh
+source "${WERCKER_STEP_ROOT}"/build-esen.sh
 
 # Remote repository to pull from and push to
 if [ -z "$WERCKER_GIT_PUSH_REPO" ]; then
