@@ -29,7 +29,7 @@ Complete `wercker.yml` file example for building a Hugo site and publishing
 it to GitHub Pages:
 
 ```yaml
-box: faph/hugo-box:0.16
+box: faph/hugo-box:0.17
 
 build:
   steps:
